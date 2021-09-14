@@ -9,16 +9,47 @@
     <title>Book Library</title>
 </head>
 <body>
-    <header class="header sticky">
+    <header class="header">
         <div>
             <h1>Book Library App</h1>
         </div>
     </header>
 
     <main class="main" id="main">
-        
+        <div class="bookCard">
+            <div></div>
+            <div class="addNewCard">
+                <button id="addNewBtn" class="addNewBtn">+</button>
+            </div>
+            <div></div>
+        </div>
     </main>
-
+    <div id="addBook" class="addBook">
+        <div>
+            <span>Title:</span>
+            <br>
+            <input id="titleInput" class="bookInput" placeholder="Book title" type="text"> 
+        </div>  
+        <div>
+            <span>Author:</span>
+            <br>
+            <input id="authorInput" class="bookInput" placeholder="Author of the book" type="text"> 
+        </div> <div>
+            <span>Pages:</span>
+            <br>
+            <input id="pagesInput" class="bookInput" placeholder="Number of pages" type="number"> 
+        </div> 
+        <div>
+            <div>
+            <span>Already read:</span>
+            <input id="readInput" class="bookCheckbox" type="checkbox"> 
+            </div>
+        </div> 
+        <div>
+            <button class="addBookBtn" id="addAdd">Add</button>
+            <button class="addBookBtn addBookBtnCancel" id="addCancel">Cancel</button>
+        </div>
+    </div>
     <footer>
 
     </footer>
