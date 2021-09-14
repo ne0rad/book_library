@@ -4,6 +4,7 @@ html,body {
     font-family: 'Merriweather', serif;
     padding: 0;
     margin: 0;
+    background-color: silver;
 }
 
 .header {
@@ -36,18 +37,55 @@ html,body {
       position: inherit;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       background-color: aliceblue;
       width: 250px;
-      height: 400px;
+      height: 300px;
       flex-wrap: wrap;
-      padding: 10px;
+      padding: 0;
       margin: 10px;
       border: none;
-      border-radius: 10px;
+      border-radius: 5px;
       box-shadow: 0 0 3px 2px black;
       transition: all 0.2s;
   }
-
-  .bookCard:hover {
-    box-shadow: 0 0 6px 4px black;
+  .bookCard:hover .btn {
+    opacity: 100%;
   }
+
+  .cardContent {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      padding: 10px;
+      margin: 5px;
+      font-size: 16px;
+  }
+
+  .btn {
+    font-family: 'Merriweather', serif;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    margin: 0;
+    width: 100%;
+    height: 30px;
+    opacity: 0%;
+    transition: all 0.2s;
+  }
+
+  .btn:hover {
+    box-shadow: inset 0 0 1px 1px black;
+  }
+
+  .delete {
+      border-radius: 0 0 5px 5px;
+      background-color: rgb(255, 139, 118);
+      border-top: 1px solid black;
+  }
+
+  .edit {
+    background-color: rgb(191, 231, 109);
+      border-top: 2px solid black;
+      border-bottom: 1px solid black;
+}
