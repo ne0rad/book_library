@@ -179,10 +179,7 @@ body {
   justify-content: center;
 }
 .addNewBtn {
-  font-family: "Merriweather", serif;
-  font-size: 80px;
   background-color: var(--main);
-  padding-bottom: 10px;
   color: white;
   width: 150px;
   height: 150px;
@@ -190,6 +187,11 @@ body {
   border-radius: 5px;
   box-shadow: 0 0 5px 2px black;
   transition: all 0.2s;
+}
+#addNewBookImg {
+    width: 100px;
+    height: 100px;
+    filter: invert(100%);
 }
 
 .addNewBtn:hover {
