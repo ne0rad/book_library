@@ -1,194 +1,212 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Merriweather&display=swap");
 
 :root {
-    --main: rgb(72, 105, 177);
-    --background: silver;
-  }
+  --main: rgb(72, 105, 177);
+  --background: silver;
+}
 
-html,body {
-    font-family: 'Merriweather', serif;
-    padding: 0;
-    margin: 0;
-    background-color: rgb(216, 216, 216);
+html,
+body {
+  font-family: "Merriweather", serif;
+  padding: 0;
+  margin: 0;
+  background-color: rgb(216, 216, 216);
 }
 
 .header {
-    height: 60px;
-    margin: 0;
-    background-color: var(--main);
-    color: white;
-    text-shadow: 0 0 4px black;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    width: 100%;
-    position: fixed;
-    box-shadow: 0 0 5px 2px black;
-    z-index: 1;
-    min-width: 380px;
-  }
+  height: 60px;
+  margin: 0;
+  background-color: var(--main);
+  color: white;
+  text-shadow: 0 0 4px black;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  position: fixed;
+  box-shadow: 0 0 5px 2px black;
+  z-index: 1;
+  min-width: 380px;
+}
 
-  .main {
-      display: flex;
-      position:relative;
-      top: 60px;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content:center;
-      margin: 0;
-      padding: 0;
-      min-width: 380px;
-      min-height: 625px;
-  }
+.main {
+  display: flex;
+  position: relative;
+  top: 60px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  min-width: 380px;
+  min-height: 625px;
+}
 
-  .bookCard {
-      position: inherit;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background-color: antiquewhite;
-      width: 250px;
-      height: 300px;
-      flex-wrap: wrap;
-      padding: 0;
-      margin: 10px;
-      border: none;
-      border-radius: 5px;
-      box-shadow: 0 0 3px 2px black;
-      transition: all 0.2s;
-  }
-  .bookCard:hover .btn {
-    opacity: 100%;
-  }
+.bookCard {
+  position: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: antiquewhite;
+  width: 250px;
+  height: 300px;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 3px 2px black;
+  transition: all 0.2s;
+}
+.bookCard:hover .btn {
+  opacity: 100%;
+}
+.bookCard:focus .btn {
+  opacity: 100%;
+}
 
-  .cardContent {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      padding: 10px;
-      margin: 5px;
-      font-size: 16px;
-  }
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 10px;
+  margin: 5px;
+  font-size: 16px;
+}
 
-  .btn {
-    font-family: 'Merriweather', serif;
-    font-size: 14px;
-    border: none;
-    margin: 0;
-    width: 100%;
-    height: 25px;
-    opacity: 0%;
-    transition: all 0.2s;
-  }
+.btn {
+  font-family: "Merriweather", serif;
+  font-size: 14px;
+  border: none;
+  margin: 0;
+  width: 100%;
+  height: 25px;
+  opacity: 0%;
+  transition: all 0.2s;
+}
 
-  .delete {
-      border-radius: 0 0 5px 5px;
-      background-color: var(--background);
-      border-top: 1px solid black;
-  }
-  .delete:hover {
-      background-color: tomato;
-  }
+.delete {
+  border-radius: 0 0 5px 5px;
+  background-color: var(--background);
+  border-top: 1px solid black;
+}
+.delete:hover {
+  background-color: tomato;
+}
 
-  .edit {
-      background-color: var(--background);
-      border-top: 1px solid black;
+.edit {
+  background-color: var(--background);
+  border-top: 1px solid black;
 }
 .edit:hover {
-    background-color: yellowgreen;
+  background-color: yellowgreen;
 }
 
 .addBook {
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    top: 100px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: var(--main);
-    color: white;
-    text-shadow: 0 0 2px black;
-    width: 350px;
-    height: 500px;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px 2px black;
-    opacity: 0;
-    z-index: -1;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--main);
+  color: white;
+  text-shadow: 0 0 2px black;
+  width: 350px;
+  height: 500px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 2px black;
+  opacity: 0;
+  z-index: -1;
 }
 
 .bookInput {
-    font-family: 'Merriweather', serif;
-    font-size: 16px;
-    width: 300px;
-    border-radius: 5px;
-    height: 30px;
-    border: none;
-    padding: 5px;
+  font-family: "Merriweather", serif;
+  font-size: 16px;
+  width: 300px;
+  border-radius: 5px;
+  height: 30px;
+  border: none;
+  padding: 5px;
 }
 
-.bookInput:focus{
-    outline: none;
-    box-shadow: 0 0 2px 1px black;
+.bookInput:focus {
+  outline: none;
+  box-shadow: 0 0 2px 1px black;
 }
 
 .bookCheckbox {
-    position: relative;
-    width: 30px;
-    height: 30px;
-    top: 8px;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  top: 8px;
 }
 
 .addBookBtn {
-    width: 150px;
-    height: 50px;
-    padding: 5px;
-    margin: 3px;
-    font-family: 'Merriweather', serif;
-    font-size: 18px;
-    border: none;
-    border-radius: 5px;
-    background-color: white;
-    color: var(--main);
-    transition: all 0.2s;
+  width: 150px;
+  height: 50px;
+  padding: 5px;
+  margin: 3px;
+  font-family: "Merriweather", serif;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  background-color: white;
+  color: var(--main);
+  transition: all 0.2s;
 }
 
 .addBookBtn:hover {
-    box-shadow: 0 0 3px 1px black;
-    background-color: yellowgreen;
-    color: black;
+  box-shadow: 0 0 3px 1px black;
+  background-color: yellowgreen;
+  color: black;
 }
 
 .addBookBtnCancel:hover {
-    background-color: tomato;
+  background-color: tomato;
 }
 
 .addBookBtn:active {
-    box-shadow: inset 0 0 3px 1px black;
+  box-shadow: inset 0 0 3px 1px black;
 }
 
 .addNewCard {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .addNewBtn {
-    font-family: 'Merriweather', serif;
-    font-size: 100px;
-    background-color: var(--main);
-    padding-bottom: 10px;
-    color: white;
-    width: 150px;
-    height: 150px;
-    border: none;
-    border-radius: 50%;
-    box-shadow: 0 0 5px 2px black;
-    transition: all 0.2s;
+  font-family: "Merriweather", serif;
+  font-size: 80px;
+  background-color: var(--main);
+  padding-bottom: 10px;
+  color: white;
+  width: 150px;
+  height: 150px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 2px black;
+  transition: all 0.2s;
 }
 
 .addNewBtn:hover {
-    box-shadow: 0 0 6px 3px black;
-    background-color: yellowgreen;
+  box-shadow: 0 0 6px 3px black;
+  background-color: yellowgreen;
+}
+
+@media screen and (max-width: 550px) {
+  .bookCard {
+    width: 80%;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .addBook {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
 }
