@@ -58,6 +58,7 @@ function generateCard(title, author, pages, read) {
 
     let card = main.appendChild(document.createElement("div"));
     card.className = "bookCard";
+    card.tabIndex = 0;
     // Take the last book from array and set index to id+1, if array is empty set index to 1
     // Breaks if you sort an array, only works if last added book is the last item in the array :(
     card.id = myLibrary.length > 0 ? myLibrary[myLibrary.length - 1].id + 1 : 1;
