@@ -29,10 +29,29 @@ body {
   min-width: 380px;
 }
 
+.footer {
+  position: relative;
+  height: 30px;
+  margin: 0;
+  top: 70px;
+  background-color: var(--main);
+  color: white;
+  text-shadow: 0 0 4px black;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  box-shadow: 0 0 5px 2px black;
+  min-width: 380px;
+}
+.footer a {
+  color: white;
+}
+
 .main {
   display: flex;
   position: relative;
-  top: 60px;
+  top: 65px;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
