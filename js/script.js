@@ -27,7 +27,19 @@ function removeFromLibrary(id) {
 
 function closeAddWindow() {
     // Hide window for adding a new book
+    let title = document.getElementById("titleInput");
+    let author = document.getElementById("authorInput");
+    let pages = document.getElementById("pagesInput");
+
     document.getElementById("addBook").style = "opacity: 0; z-index: -1";
+
+    title.value = "";
+    title.className = "bookInput";
+    author.value = "";
+    author.className = "bookInput";
+    pages.value = "";
+    pages.className = "bookInput";
+    read.checked = false;
 }
 function openAddWindow() {
     // Show window for adding a new book
@@ -40,14 +52,35 @@ function addBookClick() {
     let author = document.getElementById("authorInput");
     let pages = document.getElementById("pagesInput");
     let read = document.getElementById("readInput");
-    addBookToLibrary(title.value, author.value, pages.value, read.checked);
-    closeAddWindow();
+    let pass = true;
+    if (title.value.length < 1) {
+        title.className = "bookInput errorInput";
+        pass = false;
+    } else {
+        title.className = "bookInput";
+    }
+    if (author.value.length < 1) {
+        author.className = "bookInput errorInput";
+        pass = false;
+    } else {
+        author.className = "bookInput";
+    }
+    if (pages.value.length < 1) {
+        pages.className = "bookInput errorInput";
+        pass = false;
+    } else {
+        pages.className = "bookInput";
+    }
+    if (pass) {
+        addBookToLibrary(title.value, author.value, pages.value, read.checked);
+        closeAddWindow();
 
-    // Reset input fields
-    title.value = "";
-    author.value = "";
-    pages.value = "";
-    read.checked = false;
+        // Reset input fields
+        title.value = "";
+        author.value = "";
+        pages.value = "";
+        read.checked = false;
+    }
 }
 
 function generateCard(title, author, pages, read) {
