@@ -20,32 +20,56 @@ function addBookToLibrary(title, author, pages, read) {
 
 function removeFromLibrary(id) {
     // Find matching id for the book to remove
-    const index = myLibrary.findIndex(Book => Book.id === id);
+    const index = myLibrary.findIndex(el => el.id === id);
+    console.log(index); // WHY DOES IT LOG -1????
     myLibrary.splice(index, 1);
     document.getElementById(id).remove();
 }
 
 function closeAddWindow() {
-    // Hide window for adding a new book
+    // Hide "Add new book" window
     let title = document.getElementById("titleInput");
     let author = document.getElementById("authorInput");
     let pages = document.getElementById("pagesInput");
 
     document.getElementById("addBook").style = "opacity: 0; z-index: -1";
+    document.getElementById("editBook").style = "opacity: 0; z-index: -1";
 
+    // Clear input values and error styling upon closing the window
     title.value = "";
     title.className = "bookInput";
     author.value = "";
     author.className = "bookInput";
     pages.value = "";
     pages.className = "bookInput";
-    read.checked = false;
+}
+function closeEditWindow() {
+    // Hide "Edit book" window
+    document.getElementById("editBook").style = "opacity: 0; z-index: -1";
+    document.getElementById("addBook").style = "opacity: 0; z-index: -1";
 }
 function openAddWindow() {
-    // Show window for adding a new book
+    // Show "Add new book" window
+    document.getElementById("addBook").style = "opacity: 0; z-index: -1"; // close edit window if open
     document.getElementById("addBook").style = "opacity: 1; z-index: 0";
 }
+function openEditWindow(id) {
+    let title = document.getElementById("titleInputEdit");
+    let author = document.getElementById("authorInputEdit");
+    let pages = document.getElementById("pagesInputEdit");
+    let read = document.getElementById("readInputEdit");
 
+    // Show "Edit book" window
+    document.getElementById("addBook").style = "opacity: 0; z-index: -1"; // close add window if open
+    document.getElementById("editBook").style = "opacity: 1; z-index: 0";
+
+    const index = myLibrary.findIndex(Book => Book.id === id);
+    console.log(myLibrary[index]);
+    title.value = myLibrary[index].title;
+    author.value = myLibrary[index].author;
+    pages.value = myLibrary[index].pages;
+    read.checked = myLibrary[index].read;
+}
 function addBookClick() {
     // Take values from inputs and passes them to a function which adds a new book
     let title = document.getElementById("titleInput");
@@ -123,11 +147,13 @@ function generateCard(title, author, pages, read) {
     delBtn.className = "btn delete";
     // Event listeners for each button on the card
     delBtn.addEventListener("click", () => removeFromLibrary(card.id));
+    editBtn.addEventListener("click", () => openEditWindow(card.id));
 }
 
 
 // Event Listeners
 document.getElementById("addCancel").addEventListener("click", () => closeAddWindow());
+document.getElementById("editCancel").addEventListener("click", () => closeEditWindow());
 document.getElementById("addNewBtn").addEventListener("click", () => openAddWindow());
 document.getElementById("addAdd").addEventListener("click", () => addBookClick());
 
