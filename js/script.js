@@ -20,9 +20,10 @@ function addBookToLibrary(title, author, pages, read) {
 
 function removeFromLibrary(id) {
     // Find matching id for the book to remove
-    const index = myLibrary.findIndex(el => el.id === id);
+    const index = myLibrary.findIndex(el => el.id == id);
+    console.log(typeof(id));
     console.log(index); // WHY DOES IT LOG -1????
-    myLibrary.splice(index, 1);
+    myLibrary.splice(index, 1); // This works even if it logs -1
     document.getElementById(id).remove();
 }
 
@@ -63,7 +64,7 @@ function openEditWindow(id) {
     document.getElementById("addBook").style = "opacity: 0; z-index: -1"; // close add window if open
     document.getElementById("editBook").style = "opacity: 1; z-index: 0";
 
-    const index = myLibrary.findIndex(Book => Book.id === id);
+    const index = myLibrary.findIndex(Book => Book.id == id);
     console.log(myLibrary[index]);
     title.value = myLibrary[index].title;
     author.value = myLibrary[index].author;
@@ -124,26 +125,26 @@ function generateCard(title, author, pages, read) {
     bookDescription.className = "cardContent";
 
     let titleText = bookDescription.appendChild(document.createElement("span"));
-    titleText.innerHTML = "Title: " + title;
+    titleText.textContent = "Title: " + title;
     bookDescription.appendChild(document.createElement("br"));
 
     let authorText = bookDescription.appendChild(document.createElement("span"));
-    authorText.innerHTML = "Author: " + author;
+    authorText.textContent = "Author: " + author;
     bookDescription.appendChild(document.createElement("br"));
 
     let pagesText = bookDescription.appendChild(document.createElement("span"));
-    pagesText.innerHTML = "Pages: " + pages;
+    pagesText.textContent = "Pages: " + pages;
     bookDescription.appendChild(document.createElement("br"));
 
     let readText = bookDescription.appendChild(document.createElement("span"));
-    readText.innerHTML = read ? "Status: read" : "Status: not read";
+    readText.textContent = read ? "Status: read" : "Status: not read";
 
     let buttons = card.appendChild(document.createElement("div"));
     let editBtn = buttons.appendChild(document.createElement("button"));
     let delBtn = buttons.appendChild(document.createElement("button"));
-    editBtn.innerHTML = "Edit";
+    editBtn.textContent = "Edit";
     editBtn.className = "btn edit";
-    delBtn.innerHTML = "Delete";
+    delBtn.textContent = "Delete";
     delBtn.className = "btn delete";
     // Event listeners for each button on the card
     delBtn.addEventListener("click", () => removeFromLibrary(card.id));
