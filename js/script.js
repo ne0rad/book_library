@@ -142,11 +142,12 @@ function editBookSave() {
     } else {
         pages.className = "bookInput";
     }
-    if (pass) {
+    if (pass) { 
 
     myLibrary[index].title = title.value;
     titleText.textContent = title.value;
     closeEditWindow();
+    }
 }
 
 function generateCard(title, author, pages, read) {
