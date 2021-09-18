@@ -22,8 +22,8 @@ function removeFromLibrary(id) {
     // Find matching id for the book to remove
     const index = myLibrary.findIndex(el => el.id == id);
     console.log(typeof(id));
-    console.log(index); // WHY DOES IT LOG -1????
-    myLibrary.splice(index, 1); // This works even if it logs -1
+    console.log(index); 
+    myLibrary.splice(index, 1);
     document.getElementById(id).remove();
 }
 
@@ -47,11 +47,10 @@ function closeAddWindow() {
 function closeEditWindow() {
     // Hide "Edit book" window
     document.getElementById("editBook").style = "opacity: 0; z-index: -1";
-    document.getElementById("addBook").style = "opacity: 0; z-index: -1";
 }
 function openAddWindow() {
     // Show "Add new book" window
-    document.getElementById("addBook").style = "opacity: 0; z-index: -1"; // close edit window if open
+    closeEditWindow();
     document.getElementById("addBook").style = "opacity: 1; z-index: 0";
 }
 function openEditWindow(id) {
@@ -61,11 +60,12 @@ function openEditWindow(id) {
     let read = document.getElementById("readInputEdit");
 
     // Show "Edit book" window
-    document.getElementById("addBook").style = "opacity: 0; z-index: -1"; // close add window if open
+    closeAddWindow();
     document.getElementById("editBook").style = "opacity: 1; z-index: 0";
 
+    document.getElementById("hiddenId").value = id;
+
     const index = myLibrary.findIndex(Book => Book.id == id);
-    console.log(myLibrary[index]);
     title.value = myLibrary[index].title;
     author.value = myLibrary[index].author;
     pages.value = myLibrary[index].pages;
@@ -108,6 +108,47 @@ function addBookClick() {
     }
 }
 
+function editBookSave() {
+    let id = document.getElementById("hiddenId").value;
+
+    // CONTINUE HERE
+
+    const index = myLibrary.findIndex(el => el.id == id);
+    let titleText = document.getElementById("title"+id);
+    let title = document.getElementById("titleInputEdit");
+    let authorText = document.getElementById("author"+id);
+    let author = document.getElementById("authorInputEdit");
+    let pagesText = document.getElementById("pages"+id);
+    let pages = document.getElementById("pagesInputEdit");
+    let readValue = document.getElementById("read"+id);
+    let read = document.getElementById("readInputEdit");
+
+    let pass = true;
+    if (title.value.length < 1) {
+        title.className = "bookInput errorInput";
+        pass = false;
+    } else {
+        title.className = "bookInput";
+    }
+    if (author.value.length < 1) {
+        author.className = "bookInput errorInput";
+        pass = false;
+    } else {
+        author.className = "bookInput";
+    }
+    if (pages.value.length < 1) {
+        pages.className = "bookInput errorInput";
+        pass = false;
+    } else {
+        pages.className = "bookInput";
+    }
+    if (pass) {
+
+    myLibrary[index].title = title.value;
+    titleText.textContent = title.value;
+    closeEditWindow();
+}
+
 function generateCard(title, author, pages, read) {
 
     // Generating HTML with Vanilla JS, yay...
@@ -126,6 +167,7 @@ function generateCard(title, author, pages, read) {
 
     let titleText = bookDescription.appendChild(document.createElement("span"));
     titleText.textContent = "Title: " + title;
+    titleText.id = "title" + card.id;
     bookDescription.appendChild(document.createElement("br"));
 
     let authorText = bookDescription.appendChild(document.createElement("span"));
@@ -157,6 +199,7 @@ document.getElementById("addCancel").addEventListener("click", () => closeAddWin
 document.getElementById("editCancel").addEventListener("click", () => closeEditWindow());
 document.getElementById("addNewBtn").addEventListener("click", () => openAddWindow());
 document.getElementById("addAdd").addEventListener("click", () => addBookClick());
+document.getElementById("editSave").addEventListener("click", () => editBookSave());
 
 
 // Add some random books for testing
