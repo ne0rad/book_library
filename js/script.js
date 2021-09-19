@@ -21,8 +21,6 @@ function addBookToLibrary(title, author, pages, read) {
 function removeFromLibrary(id) {
     // Find matching id for the book to remove
     const index = myLibrary.findIndex(el => el.id == id);
-    console.log(typeof(id));
-    console.log(index); 
     myLibrary.splice(index, 1);
     document.getElementById(id).remove();
 }
@@ -44,15 +42,27 @@ function closeAddWindow() {
     pages.value = "";
     pages.className = "bookInput";
 }
+
 function closeEditWindow() {
     // Hide "Edit book" window
+    let title = document.getElementById("titleInputEdit");
+    let author = document.getElementById("authorInputEdit");
+    let pages = document.getElementById("pagesInputEdit");
+
     document.getElementById("editBook").style = "opacity: 0; z-index: -1";
+
+    // Reset error styling
+    title.className = "bookInput";
+    author.className = "bookInput";
+    pages.className = "bookInput";
 }
+
 function openAddWindow() {
     // Show "Add new book" window
     closeEditWindow();
     document.getElementById("addBook").style = "opacity: 1; z-index: 0";
 }
+
 function openEditWindow(id) {
     let title = document.getElementById("titleInputEdit");
     let author = document.getElementById("authorInputEdit");
@@ -71,6 +81,7 @@ function openEditWindow(id) {
     pages.value = myLibrary[index].pages;
     read.checked = myLibrary[index].read;
 }
+
 function addBookClick() {
     // Take values from inputs and passes them to a function which adds a new book
     let title = document.getElementById("titleInput");
@@ -110,9 +121,6 @@ function addBookClick() {
 
 function editBookSave() {
     let id = document.getElementById("hiddenId").value;
-
-    // CONTINUE HERE
-
     const index = myLibrary.findIndex(el => el.id == id);
     let titleText = document.getElementById("title"+id);
     let title = document.getElementById("titleInputEdit");
@@ -120,7 +128,7 @@ function editBookSave() {
     let author = document.getElementById("authorInputEdit");
     let pagesText = document.getElementById("pages"+id);
     let pages = document.getElementById("pagesInputEdit");
-    let readValue = document.getElementById("read"+id);
+    let readText = document.getElementById("read"+id);
     let read = document.getElementById("readInputEdit");
 
     let pass = true;
@@ -143,9 +151,16 @@ function editBookSave() {
         pages.className = "bookInput";
     }
     if (pass) { 
-
     myLibrary[index].title = title.value;
-    titleText.textContent = title.value;
+    myLibrary[index].author = author.value;
+    myLibrary[index].pages = pages.value;
+    myLibrary[index].read = read.checked;
+
+    titleText.textContent = "Title: " + title.value;
+    authorText.textContent = "Author: " + author.value;
+    pagesText.textContent = "Pages: " + pages.value;
+    readText.textContent = read.checked ? "Status: read" : "Status: not read";
+
     closeEditWindow();
     }
 }
@@ -173,13 +188,16 @@ function generateCard(title, author, pages, read) {
 
     let authorText = bookDescription.appendChild(document.createElement("span"));
     authorText.textContent = "Author: " + author;
+    authorText.id = "author" + card.id;
     bookDescription.appendChild(document.createElement("br"));
 
     let pagesText = bookDescription.appendChild(document.createElement("span"));
     pagesText.textContent = "Pages: " + pages;
+    pagesText.id = "pages" + card.id;
     bookDescription.appendChild(document.createElement("br"));
 
     let readText = bookDescription.appendChild(document.createElement("span"));
+    readText.id = "read" + card.id;
     readText.textContent = read ? "Status: read" : "Status: not read";
 
     let buttons = card.appendChild(document.createElement("div"));
