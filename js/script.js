@@ -16,6 +16,7 @@ function addBookToLibrary(title, author, pages, read) {
     const bookIndex = myLibrary.length > 0 ? myLibrary[myLibrary.length - 1].id + 1 : 1;
     generateCard(title, author, pages, read);
     myLibrary.push(new Book(bookIndex, title, author, pages, read));
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
 }
 
 function removeFromLibrary(id) {
@@ -23,6 +24,7 @@ function removeFromLibrary(id) {
     const index = myLibrary.findIndex(el => el.id == id);
     myLibrary.splice(index, 1);
     document.getElementById(id).remove();
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
 }
 
 function closeAddWindow() {
@@ -122,13 +124,13 @@ function addBookClick() {
 function editBookSave() {
     let id = document.getElementById("hiddenId").value;
     const index = myLibrary.findIndex(el => el.id == id);
-    let titleText = document.getElementById("title"+id);
+    let titleText = document.getElementById("title" + id);
     let title = document.getElementById("titleInputEdit");
-    let authorText = document.getElementById("author"+id);
+    let authorText = document.getElementById("author" + id);
     let author = document.getElementById("authorInputEdit");
-    let pagesText = document.getElementById("pages"+id);
+    let pagesText = document.getElementById("pages" + id);
     let pages = document.getElementById("pagesInputEdit");
-    let readText = document.getElementById("read"+id);
+    let readText = document.getElementById("read" + id);
     let read = document.getElementById("readInputEdit");
 
     let pass = true;
@@ -150,18 +152,20 @@ function editBookSave() {
     } else {
         pages.className = "bookInput";
     }
-    if (pass) { 
-    myLibrary[index].title = title.value;
-    myLibrary[index].author = author.value;
-    myLibrary[index].pages = pages.value;
-    myLibrary[index].read = read.checked;
+    if (pass) {
+        myLibrary[index].title = title.value;
+        myLibrary[index].author = author.value;
+        myLibrary[index].pages = pages.value;
+        myLibrary[index].read = read.checked;
 
-    titleText.textContent = "Title: " + title.value;
-    authorText.textContent = "Author: " + author.value;
-    pagesText.textContent = "Pages: " + pages.value;
-    readText.textContent = read.checked ? "Status: read" : "Status: not read";
+        titleText.textContent = "Title: " + title.value;
+        authorText.textContent = "Author: " + author.value;
+        pagesText.textContent = "Pages: " + pages.value;
+        readText.textContent = read.checked ? "Status: read" : "Status: not read";
 
-    closeEditWindow();
+
+        localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+        closeEditWindow();
     }
 }
 
@@ -212,7 +216,6 @@ function generateCard(title, author, pages, read) {
     editBtn.addEventListener("click", () => openEditWindow(card.id));
 }
 
-
 // Event Listeners
 document.getElementById("addCancel").addEventListener("click", () => closeAddWindow());
 document.getElementById("editCancel").addEventListener("click", () => closeEditWindow());
@@ -220,11 +223,25 @@ document.getElementById("addNewBtn").addEventListener("click", () => openAddWind
 document.getElementById("addAdd").addEventListener("click", () => addBookClick());
 document.getElementById("editSave").addEventListener("click", () => editBookSave());
 
+let library = JSON.parse(localStorage.getItem("myLibrary"));
 
-// Add some random books for testing
-addBookToLibrary("Asadads", "Mr Asd", 222, false);
-addBookToLibrary("The Lord of Flies", "William Golding", 224, true);
+if (!library) {
 
-for (let i = 0; i < 10; i++) {
-    addBookToLibrary("Very nice title", "Best author ever", i, false)
+    console.log("No local storage found");
+    console.log("Generating new local storage...");
+
+    // Add some random books for testing
+    addBookToLibrary("Asadads", "Mr Asd", 222, false);
+    addBookToLibrary("The Lord of Flies", "William Golding", 224, true);
+
+    for (let i = 0; i < 10; i++) {
+        addBookToLibrary("Very nice title", "Best author ever", i, false)
+    }
+
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+
+} else {
+    library.forEach(el => {
+        addBookToLibrary(el.title, el.author, el.pages, el.read);
+    });
 }
