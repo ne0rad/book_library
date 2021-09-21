@@ -3,11 +3,12 @@
 :root {
   --main: rgb(72, 105, 177);
   --background: silver;
+  --font: "Merriweather", serif;
 }
 
 html,
 body {
-  font-family: "Merriweather", serif;
+  font-family: var(--font);
   padding: 0;
   margin: 0;
   background-color: rgb(216, 216, 216);
@@ -98,7 +99,7 @@ body {
 }
 
 .btn {
-  font-family: "Merriweather", serif;
+  font-family: var(--font);
   font-size: 14px;
   border: none;
   margin: 0;
@@ -147,7 +148,7 @@ body {
 }
 
 .bookInput {
-  font-family: "Merriweather", serif;
+  font-family: var(--font);
   font-size: 16px;
   width: 300px;
   border-radius: 5px;
@@ -177,7 +178,7 @@ body {
   height: 50px;
   padding: 5px;
   margin: 3px;
-  font-family: "Merriweather", serif;
+  font-family: var(--font);
   font-size: 18px;
   border: none;
   border-radius: 5px;

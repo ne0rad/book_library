@@ -223,23 +223,20 @@ document.getElementById("addNewBtn").addEventListener("click", () => openAddWind
 document.getElementById("addAdd").addEventListener("click", () => addBookClick());
 document.getElementById("editSave").addEventListener("click", () => editBookSave());
 
+
+// Check if local storage already exists
+// Create a new local storage item if it doesn't
 let library = JSON.parse(localStorage.getItem("myLibrary"));
-
 if (!library) {
-
     console.log("No local storage found");
     console.log("Generating new local storage...");
 
     // Add some random books for testing
-    addBookToLibrary("Asadads", "Mr Asd", 222, false);
+    addBookToLibrary("A Game of Thrones", "George R. R. Martin", 694, true);
     addBookToLibrary("The Lord of Flies", "William Golding", 224, true);
-
-    for (let i = 0; i < 10; i++) {
-        addBookToLibrary("Very nice title", "Best author ever", i, false)
-    }
+    addBookToLibrary("Fifty Shades of Grey", "E. L. James", 514, false);
 
     localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
-
 } else {
     library.forEach(el => {
         addBookToLibrary(el.title, el.author, el.pages, el.read);
